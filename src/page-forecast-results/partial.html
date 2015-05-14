@@ -1,0 +1,16 @@
+<div class="well well-sm">
+    <h3>Forecast for {{forecast.city.name}}</h3>
+</div>
+<day-selector></day-selector>
+<div ng-repeat="day in forecast.list">
+    <div class="row">
+        <div class="col-md-4">
+            <forecast-directive 
+                day="day" 
+                convert-to-day="convertToDay(day)"
+                convert-to-farenheit="convertToFarenheit(tempInKelvin)"
+                >
+            </forecast-directive>
+        </div>
+    </div>
+</div>
