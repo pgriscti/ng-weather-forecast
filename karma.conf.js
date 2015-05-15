@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed May 13 2015 13:05:03 GMT+0100 (BST)
+// Generated on Thu May 14 2015 14:35:33 GMT+0100 (BST)
 
 module.exports = function(config) {
   config.set({
@@ -10,16 +10,16 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'sinon'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'libs/angular/angular.js',
-      'libs/angular-route/angular-route.js',
-      'libs/angular-resource/angular-resource.js',
-      'libs/angular-mocks/angular-mocks.js',
-      'src/**/*.js'
+        'bower_components/angular/angular.js',
+        'bower_components/angular-route/angular-route.js',
+        'bower_components/angular-resource/angular-resource.js',
+        'bower_components/angular-mocks/angular-mocks.js',
+        'src/**/*.js'
     ],
 
 
@@ -31,13 +31,28 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'src/**/!(*.spec).js': 'coverage',
+    },
+
+    coverageReporter: {
+      dir: 'test',
+      reporters: [
+        {
+          type: 'html'
+        }, {
+          type: 'text-summary'
+        }
+      ]
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: [
+        // 'coverage', // TODO PG turn on for code coverage
+        'progress'
+    ],
 
 
     // web server port
@@ -59,7 +74,10 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: [
+    'PhantomJS'
+    // , 'Chrome'
+    ],
 
 
     // Continuous Integration mode
