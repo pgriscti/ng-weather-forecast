@@ -1,26 +1,26 @@
-'use strict';
 var weatherApp = angular.module('weatherApp', [
     'ngRoute', 
     'ngResource'
 ]);
 weatherApp.config(['$routeProvider', function ($routeProvider) {
+'use strict';
     $routeProvider
         .when(
             '/', {
                 controller: 'HomeController',
-                templateUrl: 'page-home/partial.html'
+                templateUrl: '/src/page-home/partial.html'
             }
         )
         .when(
             '/forecast', {
                 controller: 'ForecastController',
-                templateUrl: 'page-forecast-results/partial.html'
+                templateUrl: '/src/page-forecast-results/partial.html'
             }
         )
         .when(
             '/forecast/:numDays', {
                 controller: 'ForecastController',
-                templateUrl: 'page-forecast-resutls/partial.html'
+                templateUrl: '/src/page-forecast-resutls/partial.html'
             }
         );
 }]);
