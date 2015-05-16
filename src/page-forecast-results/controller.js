@@ -7,7 +7,6 @@ weatherApp.controller('ForecastController', [
     $scope.forecast = weatherModel.getForecastData();
 
     $rootScope.$on('newForecastData', function () {
-        console.log('in event')
         $scope.forecast = weatherModel.getForecastData();
     });
 
