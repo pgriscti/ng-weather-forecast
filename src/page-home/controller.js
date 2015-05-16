@@ -1,13 +1,13 @@
 weatherApp.controller('HomeController', [
-	'$scope', 'strings', 'weatherService', 
-	function ($scope, strings, weatherService) {
+	'$scope', 'constants', 'weatherService', 
+	function ($scope, constants, weatherService) {
     'use strict';
 
     $scope.city = 'London';
-    $scope.forecastCity = strings.forecastCity;
+    $scope.forecastCity = constants.strings.forecastCity;
 
     $scope.getForecast = function () {
-    	var numDays = 5;
+    	var numDays = constants.defaultValues.forecastNumDays;
         weatherService.getForecast($scope.city, numDays);
     };
 }]);

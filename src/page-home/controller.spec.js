@@ -16,7 +16,7 @@ describe('Home Controller', function () {
 		};
 	});
 
-	beforeEach(inject(function ($injector) {
+	beforeEach(inject(function ($injector, constants) {
 		var $controller = $injector.get('$controller');
 
 		createController = function () {
@@ -36,7 +36,6 @@ describe('Home Controller', function () {
 		it('should call the weather service with the correct parameters', function () {
 			var days = 5,
 			city = 'London';
-
 			scope.getForecast(days);
 
 			expect(weatherService.getForecast.withArgs(city, days).callCount).toEqual(1);
