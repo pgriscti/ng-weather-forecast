@@ -1,31 +1,36 @@
 'use strict';
 
 describe('Home Controller', function () {
-	var scope,
-		controller,
-		createController,
-		weatherService;
+	var constants,
+			controller,
+			createController,
+			httpBackend,
+			scope;
 
 	beforeEach(module('weatherApp'));
 
-	beforeEach(function () {
-
-		scope = {};
-		weatherService = {
-			getForecast: sinon.stub()
-		};
-	});
-
-	beforeEach(inject(function ($injector, constants) {
+	beforeEach(inject(function ($injector, $httpBackend, $rootScope, _constants_) {
 		var $controller = $injector.get('$controller');
+		scope = $rootScope.$new();
+		constants = _constants_;
+		httpBackend = $httpBackend;
 
 		createController = function () {
 			return $controller('HomeController', {
 				$scope: scope,
-				weatherService: weatherService
+				constants: constants
 			});
 		};
 	}));
+
+	beforeEach(inject(function ($httpBackend) {
+		httpBackend = $httpBackend;
+	}));
+
+	afterEach(function () {
+		httpBackend.verifyNoOutstandingExpectation();
+		httpBackend.verifyNoOutstandingRequest();
+	});
 
 	describe('when initialised', function () {
 
@@ -33,12 +38,15 @@ describe('Home Controller', function () {
 			controller = createController();
 		});
 
-		it('should call the weather service with the correct parameters', function () {
-			var days = 5,
-			city = 'London';
-			scope.getForecast(days);
+		it('should', function () {
+			httpBackend.expectGET('http://api.openweathermap.org/data/2.5/forecast/daily?cnt=5&q=London'
+	  	).respond({
+	      	foo: 'foo'
+	    });
 
-			expect(weatherService.getForecast.withArgs(city, days).callCount).toEqual(1);
+	  	scope.getForecast();
+	  	httpBackend.flush();
 		});
+
 	});
 });
