@@ -1,6 +1,7 @@
 describe('Weather Model', function () {
 
-	var rootScope,
+	var constants,
+		rootScope,
 		weatherModel;
 
 	beforeEach(module('weatherApp'));
@@ -11,12 +12,13 @@ describe('Weather Model', function () {
 		};
 
 		module(function ($provide) {
-			$provide.value('$rootScope', rootScope)
+			$provide.value('$rootScope', rootScope);
 		});
 	});
 
-	beforeEach(inject(function ($injector) {
+	beforeEach(inject(function ($injector, _constants_) {
 		weatherModel = $injector.get('weatherModel');
+		constants = _constants_;
 	}));
 
 	it('should have all the public function defined', function () {
@@ -30,6 +32,6 @@ describe('Weather Model', function () {
 		};
 
 		weatherModel.setForecastData(forecastData);
-		expect(rootScope.$emit.withArgs('newForecastData').callCount).toEqual(1);
+		expect(rootScope.$emit.withArgs(constants.events.newForecastData).callCount).toEqual(1);
 	});
 });

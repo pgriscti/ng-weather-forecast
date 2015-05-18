@@ -1,5 +1,5 @@
-weatherApp.factory('weatherModel', ['$rootScope', 
-    function ($rootScope) {
+weatherApp.factory('weatherModel', ['$rootScope', 'constants',
+    function ($rootScope, constants) {
     'use strict';
     
     var forecastData,
@@ -12,7 +12,7 @@ weatherApp.factory('weatherModel', ['$rootScope',
     
     setForecastData = function setForecastData (data) {
         forecastData = data;
-        $rootScope.$emit('newForecastData');
+        $rootScope.$emit(constants.events.newForecastData);
     };
     
     return {
