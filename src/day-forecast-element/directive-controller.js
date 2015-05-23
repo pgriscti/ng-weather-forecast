@@ -1,9 +1,9 @@
 weatherApp.controller('dayForecastDirectiveController', [
 	'$scope',
-	'strings', 
-	function ($scope, strings) {
+	'constants', 
+	function ($scope, constants) {
 		'use strict';
 		
-		$scope.dayTemp = strings.dayTemp;
+		$scope.dayTemp = constants.strings.dayTemp;
 	}
 ]);
