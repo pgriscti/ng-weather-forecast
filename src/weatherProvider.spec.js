@@ -10,7 +10,7 @@ describe('Weather Provider', function () {
 
 	it('should have the public properties', function () {
 		expect(weatherProvider.convertToDay).toBeDefined();
-		expect(weatherProvider.convertToFarenheit).toBeDefined();
+		expect(weatherProvider.convertToFahrenheit).toBeDefined();
 	});
 
 	it('should convert the correct amount of milliseconds to the correct date', function () {
@@ -33,7 +33,7 @@ describe('Weather Provider', function () {
 
 			expectedTemperatureInFarenheit = 81;
 			temperatrueInKelvin = 300;
-			actualTemperatureInFarenheit = weatherProvider.convertToFarenheit(temperatrueInKelvin);
+			actualTemperatureInFarenheit = weatherProvider.convertToFahrenheit(temperatrueInKelvin);
 
 			expect(actualTemperatureInFarenheit).toEqual(expectedTemperatureInFarenheit);
 
