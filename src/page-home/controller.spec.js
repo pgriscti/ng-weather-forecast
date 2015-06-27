@@ -2,12 +2,29 @@
 
 describe('Home Controller', function () {
 	var constants,
-			controller,
-			createController,
-			httpBackend,
-			scope;
+		controller,
+		createController,
+		expectedWeatherData,
+		httpBackend,
+		location,
+		scope,
+		weatherModel;
 
 	beforeEach(module('weatherApp'));
+
+	beforeEach(function () {
+		expectedWeatherData = {
+			data: 'dummyWeatherData'
+		};
+
+		location = {
+			path: sinon.stub()
+		};
+
+		weatherModel = {
+			setForecastData: sinon.stub()
+		};
+	});
 
 	beforeEach(inject(function ($injector, $httpBackend, $rootScope, _constants_) {
 		var $controller = $injector.get('$controller');
@@ -17,8 +34,10 @@ describe('Home Controller', function () {
 
 		createController = function () {
 			return $controller('HomeController', {
+				$location: location,
 				$scope: scope,
-				constants: constants
+				constants: constants,
+				weatherModel: weatherModel
 			});
 		};
 	}));
@@ -38,14 +57,35 @@ describe('Home Controller', function () {
 			controller = createController();
 		});
 
-		it('should', function () {
-			httpBackend.expectGET('http://api.openweathermap.org/data/2.5/forecast/daily?cnt=5&q=London'
-	  	).respond({
-	      	foo: 'foo'
-	    });
+		it('should get and put the weather data on the weatherModel', function () {
+			httpBackend.expectGET(constants.config.apiUrl + '?cnt=5&q=London'
+		  	).respond(expectedWeatherData);
 
-	  	scope.getForecast();
-	  	httpBackend.flush();
+		  	scope.getForecast();
+		  	httpBackend.flush();
+
+		  	expect(weatherModel.setForecastData.withArgs(expectedWeatherData).callCount).toEqual(1);
+		});
+
+		it('should change location paths when the data is retrieved', function () {
+			httpBackend.expectGET(constants.config.apiUrl + '?cnt=5&q=London'
+			).respond(expectedWeatherData);
+
+			scope.getForecast();
+			httpBackend.flush();
+
+			expect(location.path.withArgs(constants.pages.forecast).callCount).toEqual(1);
+		});
+
+		it('should not put the weather data when fetching data returns an error', function () {
+			// var errorResponse;
+
+			// errorResponse = {
+			// 	status: '400'
+			// };
+
+			// httpBackend.get(constants.config.apiUrl + '?cnt=5&q=London'
+			// ).respond(errorResponse);
 		});
 
 	});
