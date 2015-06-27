@@ -17,4 +17,5 @@ weatherApp.controller('ForecastController', [
     $scope.convertToFahrenheit = function convertToFahrenheit(tempInKelvin) {
         return weatherProvider.convertToFahrenheit(tempInKelvin);
     };
+
 }]);
