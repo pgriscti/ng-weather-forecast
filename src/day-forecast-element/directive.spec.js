@@ -4,19 +4,18 @@ describe('Day forecast directive', function () {
 	var directive;
 
 	beforeEach(module('weatherApp'));
-	beforeEach(module('ngResource', function ($provide, $controllerProvider) {
-		$controllerProvider.register('HomeController', function ($scope) {
-			$scope.hello = 'pg';
-		});
-	}));
 
-	it('should controller', inject(function ($rootScope, $controller) {
-		var $scope,
-			controller;
+	// beforeEach(inject(function ($injector) {
+	// 	directive = $injector.get('forecastDirective')[0];
+	// }));
 
-		$scope = $rootScope.$new();
-		controller = $controller('HomeController', {$scope: $scope});
-	}));
+	// it('should controller', inject(function ($controller) {
+	// 	var $scope,
+	// 		controller;
+
+	// 	$scope = $rootScope.$new();
+	// 	controller = $controller('HomeController', {$scope: $scope});
+	// }));
 
 	// beforeEach(inject(function ($injector, foo) {
 	// 	directive = $injector.get('forecastDirective')[0];
@@ -24,6 +23,7 @@ describe('Day forecast directive', function () {
 	// }));
 
 	it('should restrict to E', function () {
+		// console.log('asdfasfasfds', directive);
 		// expect(directive.restrict).toEqual('E');
 	});
 });
