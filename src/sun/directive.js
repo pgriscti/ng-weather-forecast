@@ -6,20 +6,7 @@ weatherApp.directive('sun', function () {
 		restrict: 'E',
 		template: '<svg></svg>',
 		link: function (scope, element, attrs) {
-			scope.$watch(attrs.sunData, function (planets) {
-				// var svg = d3.select(element[0].firstChild);
-				// console.log(sunData);
-
-				// svg.selectAll('circle')
-				// 		.data(sunData)
-				// 	.enter()
-				// 		.append('circle')
-				// 		.attr('cx', function (d, i) {
-				// 			console.log(d);
-				// 			return i * d.x;
-				// 		})
-				// 		.attr('cy', 30)
-				// 		.attr('r', 30);
+			scope.$watch(attrs.sunData, function (sunData) {
 
 				var w = 150, 
 					h = 150,
@@ -28,10 +15,10 @@ weatherApp.directive('sun', function () {
 					planets,
 					svg;
 
-				// planets = [
-				// 	{ R: 50, r:  5, speed: 5, phi0: 90},
-				// 	{ R: 10, r: 10, speed: 5, phi0: 190}
-				// ];
+				planets = [
+					{ R: 50, r:  5, speed: 5, phi0: 90},
+					{ R: 10, r: 10, speed: 5, phi0: 190}
+				];
 
 				svg = d3.select(element[0].firstChild)
 						.attr('width', w)
@@ -55,7 +42,7 @@ weatherApp.directive('sun', function () {
 							d3.select(this).append('circle')
 							.attr('class', 'orbit')
 							.attr('r', d.R)
-							.attr('fill', '#eeeeee');
+							.attr('fill', '#cccccc');
 
 							d3.select(this).append('circle')
 							.attr('r', d.r)
@@ -64,7 +51,7 @@ weatherApp.directive('sun', function () {
 							.attr('class', 'planet')
 							.attr('fill', 'yellow')
 							.attr('stroke-width', '1')
-							.attr('stroke', '#888888');
+							.attr('stroke', 'black');
 						});
 
 				d3.timer(function() {
