@@ -6,7 +6,7 @@ weatherApp.controller('lineChardDirectiveController', [
 		$scope.temperatures = [
 			{'temp': '40', 'date': '11/03'},
 			{'temp': '22', 'date': '12/03'},
-			{'temp': '33', 'date': '13/03'}
+			{'temp': '33', 'date': '13/03'} 
 		];
 	}
 ]);
