@@ -1,10 +1,13 @@
 <div class="well well-sm">
     <h3>{{forecastFor}} {{forecast.city.name}}</h3>
 </div>
+
+<planets temperatures="temperatures"></planets><!-- 
+<letters temperatures="temperatures"></letters>
 <pie-chart temperatures="temperatures"></pie-chart>
 <circles temperatures="temperatures"></circles>
-<column-chart temperatures="temperatures"></column-chart>
-<sun sun-data="planets"></sun>
+<column-chart temperatures="temperatures"></column-chart> -->
+<!-- <sun sun-data="planets"></sun> -->
 <day-selector></day-selector>
 <div ng-repeat="day in forecast.list">
     <div class="row">
